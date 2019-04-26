@@ -3,17 +3,19 @@ import React from "react";
 function AddKegForm(props) {
   let _name = null;
   let _ABV = null;
-  let _cost = null;
-  function handleNewKegSubmission() {
+  let _price = null;
+  function handleNewKegSubmission(event) {
+    event.preventDefault();
     props.onClickingAddNewKeg({
       name: _name.value,
       ABV: _ABV.value,
-      cost: _cost.value
+      price: _price.value,
+      beersLeft: 20
     });
 
     _name.value = "";
     _ABV.value = "";
-    _cost.value = "";
+    _price.value = "";
   }
   return (
     <div>
@@ -40,7 +42,7 @@ function AddKegForm(props) {
           type="text"
           placeholder="cost"
           ref={input => {
-            _cost = input;
+            _price = input;
           }}
           required
         />

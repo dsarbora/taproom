@@ -14,7 +14,7 @@ function KegList(props) {
       `}</style>
       <div className="kegList">
         {props.kegList.map((keg, index) => (
-          <Keg key={index} name={keg.name} ABV={keg.ABV} price={keg.price} />
+          <Keg key={index} name={keg.name} ABV={keg.ABV} price={keg.price} beersLeft={keg.beersLeft} />
         ))}
       </div>
     </div>
