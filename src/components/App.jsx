@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Intro from "./Intro";
-import Game from 'Game';
+import Navbar from "./Navbar";
+import Home from "./Home";
+import KegControl from "./KegControl";
 import { Switch, Route } from "react-router-dom";
 
 class App extends Component {
@@ -12,9 +13,10 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/kegs" component={KegControl}/>
+          <Route exact path="/kegs" component={KegControl} />
         </Switch>
       </div>
     );
