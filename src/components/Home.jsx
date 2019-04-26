@@ -15,7 +15,7 @@ function Intro() {
         }
       `}</style>
       <div className="header">
-        <h1>Welcome to Hell's Gate!</h1>
+        <h1>Welcome to the pub</h1>
         <Link to="/game">
           <button>Enter</button>
         </Link>
