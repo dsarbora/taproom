@@ -21,7 +21,8 @@ class KegControl extends Component {
     let kegList = this.state.masterKegList.slice();
     kegList.push(keg);
     this.setState({
-      masterKegList: kegList
+      masterKegList: kegList,
+      addingNewKeg: false
     });
   }
 
@@ -46,7 +47,7 @@ class KegControl extends Component {
         </div>
       );
     } else {
-      return <AddKegForm onClickingAddNew={this.state.handleClickingAddNew} />;
+      return <AddKegForm onClickingAddNewKeg={this.handleAddingNewKegToList} />;
     }
   }
 }
