@@ -6,9 +6,17 @@ function KegList(props) {
   console.log(props.kegList);
   return (
     <div>
-      {props.kegList.map((keg, index) => (
-        <Keg key={index} name={keg.name} ABV={keg.ABV} price={keg.price} />
-      ))}
+      <style jsx>{`
+        .kegList {
+          display: flex;
+          flex-wrap: wrap;
+        }
+      `}</style>
+      <div className="kegList">
+        {props.kegList.map((keg, index) => (
+          <Keg key={index} name={keg.name} ABV={keg.ABV} price={keg.price} />
+        ))}
+      </div>
     </div>
   );
 }
