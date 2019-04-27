@@ -3,7 +3,6 @@ import Keg from "./Keg";
 import PropTypes from "prop-types";
 
 function KegList(props) {
-  console.log(props.kegList);
   return (
     <div>
       <style jsx>{`
@@ -13,14 +12,17 @@ function KegList(props) {
         }
       `}</style>
       <div className="kegList">
-        {props.kegList.map((keg, index) => (
+        {props.kegList.map(keg => (
           <Keg
+            onClickDelete={props.onClickDelete}
             recordSale={props.recordSale}
-            key={index}
+            key={keg.id}
             name={keg.name}
             ABV={keg.ABV}
             price={keg.price}
+            cost={keg.cost}
             beersLeft={keg.beersLeft}
+            id={keg.id}
           />
         ))}
       </div>

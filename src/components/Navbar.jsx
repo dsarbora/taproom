@@ -18,9 +18,6 @@ function Navbar() {
       <Link to="/">
         <button>Home</button>
       </Link>
-      <Link to="/kegs">
-        <button>See kegs</button>
-      </Link>
       <Link to="/bar">
         <button>Bar</button>
       </Link>

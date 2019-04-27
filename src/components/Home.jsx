@@ -12,12 +12,17 @@ function Intro() {
 
         .header {
           text-align: center;
-          background-color: #222;
+        }
+
+        button {
+          padding: 10px;
+          background-color: lightgreen;
+          border-radius: 5px;
         }
       `}</style>
       <div className="header">
         <h1>Welcome to the pub</h1>
-        <Link to="/kegs">
+        <Link to="/bar">
           <button>Enter</button>
         </Link>
       </div>

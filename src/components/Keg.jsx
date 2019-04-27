@@ -7,12 +7,21 @@ class Keg extends Component {
       beersLeft: 125
     };
   }
+
+  onClickDelete() {
+    this.props.onClickDelete(this);
+  }
+  onClickSellGrowler() {
+    this.setState({
+      beersLeft: this.state.beersLeft - 5
+    });
+    this.props.recordSale(this.props.price * 5);
+  }
   onClickSellButton() {
     this.setState({
       beersLeft: --this.state.beersLeft
     });
-    this.props.recordSale(this.props.price)
-    console.log(this.state.beersLeft);
+    this.props.recordSale(this.props.price);
   }
   render() {
     let color;
@@ -43,10 +52,21 @@ class Keg extends Component {
             padding: 10px 15px 10px 15px;
             border-radius: 5px;
             text-align: center;
-            float: right;
             margin-right: 10px;
             box-shadow: 1px -1px 1px rgba(0, 0, 0, 1);
           }
+
+          .sell {
+            float: right;
+          }
+
+          .sellGrowler {
+            float: left;
+          }
+
+          .delete {
+          }
+
           button:hover {
             box-shadow: 0 0 0 rgba(0, 0, 0, 0);
             background-color: lightgreen;
@@ -54,12 +74,24 @@ class Keg extends Component {
           }
         `}</style>
         <p>
+          {/* <button className="delete" onClick={() => this.onClickDelete()}>
+            Delete Keg
+          </button> */}
           <strong>{this.props.name}</strong>
         </p>
         <p>{this.props.ABV} ABV</p>
         <p>${this.props.price}</p>
         <p>Should have {this.state.beersLeft} beers left.</p>
-        <button onClick={() => this.onClickSellButton()}>Sell</button>
+
+        <button
+          className="sellGrowler"
+          onClick={() => this.onClickSellGrowler()}
+        >
+          Sell Growler
+        </button>
+        <button className="sell" onClick={() => this.onClickSellButton()}>
+          Sell
+        </button>
       </div>
     );
   }
