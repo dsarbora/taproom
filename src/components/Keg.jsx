@@ -11,6 +11,7 @@ class Keg extends Component {
     this.setState({
       beersLeft: --this.state.beersLeft
     });
+    this.props.recordSale(this.props.price)
     console.log(this.state.beersLeft);
   }
   render() {
@@ -36,8 +37,20 @@ class Keg extends Component {
             background-color: ${color};
           }
           .frame:hover {
-            transform: scale(1.05);
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+          }
+          button {
+            padding: 10px 15px 10px 15px;
+            border-radius: 5px;
+            text-align: center;
+            float: right;
+            margin-right: 10px;
+            box-shadow: 1px -1px 1px rgba(0, 0, 0, 1);
+          }
+          button:hover {
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            background-color: lightgreen;
+            color: black;
           }
         `}</style>
         <p>
@@ -45,7 +58,8 @@ class Keg extends Component {
         </p>
         <p>{this.props.ABV} ABV</p>
         <p>${this.props.price}</p>
-        <button onClick={() => this.onClickSellButton()} />
+        <p>Should have {this.state.beersLeft} beers left.</p>
+        <button onClick={() => this.onClickSellButton()}>Sell</button>
       </div>
     );
   }

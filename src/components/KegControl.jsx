@@ -39,7 +39,7 @@ class KegControl extends Component {
           <p>Keg Control Works</p>
           <button onClick={() => this.addNewKeg()}>Add new Keg</button>
           <div>
-            <KegList
+            <KegList recordSale={this.props.recordSale}
               onAddingNewKeg={this.handleAddingNewKegToList}
               kegList={this.state.masterKegList}
             />

@@ -21,6 +21,9 @@ function Navbar() {
       <Link to="/kegs">
         <button>See kegs</button>
       </Link>
+      <Link to="/bar">
+        <button>Bar</button>
+      </Link>
     </div>
   );
 }
