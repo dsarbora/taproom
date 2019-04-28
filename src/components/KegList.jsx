@@ -3,6 +3,10 @@ import Keg from "./Keg";
 import PropTypes from "prop-types";
 
 function KegList(props) {
+  function onClickDeleteMenu() {
+    console.log(props.onClickDeleteMenu);
+    console.log("hi");
+  }
   return (
     <div>
       <style jsx>{`
@@ -10,7 +14,12 @@ function KegList(props) {
           display: flex;
           flex-wrap: wrap;
         }
+        .delete {
+        }
       `}</style>
+      <div className="delete">
+        <button onClick={() => props.onClickDeleteMenu()}>Delete A Keg</button>
+      </div>
       <div className="kegList">
         {props.kegList.map(keg => (
           <Keg

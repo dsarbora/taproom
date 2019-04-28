@@ -25,13 +25,13 @@ class Keg extends Component {
   }
   render() {
     let color;
-    if (this.state.beersLeft > 30) {
-      color = "green";
-    } else if (this.state.beersLeft > 10) {
-      color = "yellow";
-    } else {
-      color = "red";
-    }
+      if (this.state.beersLeft > 30) {
+        color = "green";
+      } else if (this.state.beersLeft > 10) {
+        color = "yellow";
+      } else {
+        color = "red";
+      }
     return (
       <div className="frame">
         <style jsx>{`

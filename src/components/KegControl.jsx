@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import KegList from "./KegList";
+import DeleteMenu from "./DeleteMenu";
 import AddKegForm from "./AddKegForm";
 
 class KegControl extends Component {
@@ -10,13 +11,16 @@ class KegControl extends Component {
         {
           name: "Manny's Pale Ale",
           ABV: "5.6%",
-          price: "4.50"
+          price: "4.50",
+          id: 1
         }
       ],
-      addingNewKeg: false
+      addingNewKeg: false,
+      showingDeleteMenu: false
     };
     this.handleAddingNewKegToList = this.handleAddingNewKegToList.bind(this);
     this.handleDeletingKegFromList = this.handleDeletingKegFromList.bind(this);
+    this.showDeleteMenu = this.showDeleteMenu.bind(this);
   }
   handleAddingNewKegToList(keg) {
     let kegList = this.state.masterKegList.slice();
@@ -40,13 +44,21 @@ class KegControl extends Component {
   }
 
   handleDeletingKegFromList(keg) {
+    console.log(keg);
     let kegList = this.state.masterKegList.slice();
 
     let kegIndex = this.getKegIndex(keg, kegList);
     kegList.splice(kegIndex, 1);
 
     this.setState({
-      masterKegList: kegList
+      masterKegList: kegList,
+      showingDeleteMenu: false
+    });
+  }
+
+  showDeleteMenu() {
+    this.setState({
+      showingDeleteMenu: true
     });
   }
 
@@ -57,13 +69,14 @@ class KegControl extends Component {
   }
 
   render() {
-    if (!this.state.addingNewKeg) {
+    if (!this.state.addingNewKeg && !this.state.showingDeleteMenu) {
       return (
         <div>
           <p>Keg Control Works</p>
           <button onClick={() => this.addNewKeg()}>Add new Keg</button>
           <div>
             <KegList
+              onClickDeleteMenu={this.showDeleteMenu}
               onClickDelete={this.handleDeletingKegFromList}
               recordSale={this.props.recordSale}
               onAddingNewKeg={this.handleAddingNewKegToList}
@@ -71,6 +84,13 @@ class KegControl extends Component {
             />
           </div>
         </div>
+      );
+    } else if (this.state.showingDeleteMenu) {
+      return (
+        <DeleteMenu
+          onClickDelete={this.handleDeletingKegFromList}
+          kegList={this.state.masterKegList}
+        />
       );
     } else {
       return <AddKegForm onClickingAddNewKeg={this.handleAddingNewKegToList} />;
