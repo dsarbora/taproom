@@ -13,6 +13,7 @@ function AddKegForm(props) {
       ABV: _ABV.value,
       price: _price.value,
       cost: _cost.value,
+      beersLeft: 125,
       id: v4()
     });
 

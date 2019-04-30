@@ -35,10 +35,8 @@ class App extends Component {
     this.updateState = this.updateState.bind(this);
   }
 
-  updateState(componentNameString, newStateObject){
-    this.setState({
-      componentNameString: newStateObject
-    })
+  updateState(newStateObject) {
+    this.setState(newStateObject);
   }
 
   render() {
@@ -51,7 +49,9 @@ class App extends Component {
           <Route
             exact
             path="/bar"
-            component={() => <Bar updateState={this.setState} status={this.state.Bar} />}
+            component={() => (
+              <Bar updateState={this.updateState} status={this.state.Bar} />
+            )}
           />
         </Switch>
       </div>

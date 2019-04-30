@@ -3,9 +3,10 @@ import React, { Component } from "react";
 class Keg extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      beersLeft: 125
-    };
+    this.state = this.props.status;
+  }
+  updateBarComponent() {
+    this.props.updateKegControlState(this.state);
   }
 
   onClickDelete() {
@@ -15,23 +16,27 @@ class Keg extends Component {
     this.setState({
       beersLeft: this.state.beersLeft - 5
     });
-    this.props.recordSale(this.props.price * 5);
+    this.props.recordSale(this.state.price * 5);
+    setTimeout(() => {
+      this.updateBarComponent(this.state);
+    }, 0);
   }
   onClickSellButton() {
     this.setState({
       beersLeft: --this.state.beersLeft
     });
-    this.props.recordSale(this.props.price);
+    console.log(this.state.price);
+    this.props.recordSale(this.state.price);
   }
   render() {
     let color;
-      if (this.state.beersLeft > 30) {
-        color = "green";
-      } else if (this.state.beersLeft > 10) {
-        color = "yellow";
-      } else {
-        color = "red";
-      }
+    if (this.state.beersLeft > 30) {
+      color = "green";
+    } else if (this.state.beersLeft > 10) {
+      color = "yellow";
+    } else {
+      color = "red";
+    }
     return (
       <div className="frame">
         <style jsx>{`
@@ -77,10 +82,10 @@ class Keg extends Component {
           {/* <button className="delete" onClick={() => this.onClickDelete()}>
             Delete Keg
           </button> */}
-          <strong>{this.props.name}</strong>
+          <strong>{this.state.name}</strong>
         </p>
-        <p>{this.props.ABV} ABV</p>
-        <p>${this.props.price}</p>
+        <p>{this.state.ABV}% ABV</p>
+        <p>${this.state.price}</p>
         <p>Should have {this.state.beersLeft} beers left.</p>
 
         <button

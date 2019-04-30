@@ -6,6 +6,7 @@ function DeleteMenu(props) {
     <div>
       {props.kegList.map(keg => (
         <DeleteKeg
+          updateKegControlState={props.updateKegControlState}
           onClickDelete={props.onClickDelete}
           recordSale={props.recordSale}
           key={keg.id}

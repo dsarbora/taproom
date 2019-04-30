@@ -1,14 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
 
-function Financials(props) {
-  return (
-    <div>
-      <p>Cash on Hand: ${props.financials.cashOnHand}</p>
-      <p>Income: ${props.financials.income}</p>
-      <p>Expenditures: ${props.financials.expenditures}</p>
-      <p>Profit: ${props.financials.profit}</p>
-    </div>
-  );
+class Financials extends Component {
+  constructor(props) {
+    super(props);
+    this.state = this.props.status;
+    console.log(this.state);
+  }
+  render() {
+    return (
+      <div>
+        <p>Cash on Hand: ${this.state.cashOnHand}</p>
+        <p>Income: ${this.state.income}</p>
+        <p>Expenditures: ${this.state.expenditures}</p>
+        <p>Profit: ${this.state.profit}</p>
+      </div>
+    );
+  }
 }
 
 export default Financials;

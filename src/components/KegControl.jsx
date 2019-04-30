@@ -6,54 +6,82 @@ import AddKegForm from "./AddKegForm";
 class KegControl extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      masterKegList: [
-        {
-          name: "Manny's Pale Ale",
-          ABV: "5.6%",
-          price: "4.50",
-          id: 1
-        }
-      ],
-      addingNewKeg: false,
-      showingDeleteMenu: false
-    };
-    this.handleAddingNewKegToList = this.handleAddingNewKegToList.bind(this);
-    this.handleDeletingKegFromList = this.handleDeletingKegFromList.bind(this);
-    this.showDeleteMenu = this.showDeleteMenu.bind(this);
-  }
-  handleAddingNewKegToList(keg) {
-    let kegList = this.state.masterKegList.slice();
-    kegList.push(keg);
+    this.state = this.props.status;
 
+    //this.handleAddingNewKegToList = this.handleAddingNewKegToList.bind(this);
+    this.updateStateFromAddKegForm = this.updateStateFromAddKegForm.bind(this);
+    this.showDeleteMenu = this.showDeleteMenu.bind(this);
+    this.updateKegControlStateFromKeg = this.updateKegControlStateFromKeg.bind(
+      this
+    );
+    this.updateKegControlStateFromDeleteMenu = this.updateKegControlStateFromDeleteMenu.bind(
+      this
+    );
+    this.updateBarState = this.updateBarState.bind(this);
+  }
+
+  updateBarState() {
+    this.props.updateState(this.state);
+  }
+
+  updateKegControlStateFromKeg(newStateObject) {
+    let kegListToBeUpdated = this.state.masterKegList.slice();
+    let kegIndex = this.getKegIndex(newStateObject, kegListToBeUpdated);
+    kegListToBeUpdated.splice(kegIndex, 1, newStateObject);
     this.setState({
-      masterKegList: kegList,
+      masterKegList: kegListToBeUpdated
+    });
+    setTimeout(() => {
+      this.updateBarState();
+    }, 0);
+  }
+
+  updateKegControlStateFromDeleteMenu(objectToBeDeleted) {
+    let kegListToBeUpdated = this.state.masterKegList.slice();
+    let kegIndex = this.getKegIndex(objectToBeDeleted, kegListToBeUpdated);
+    kegListToBeUpdated.splice(kegIndex, 1);
+    this.setState({
+      masterKegList: kegListToBeUpdated,
+      showingDeleteMenu: false
+    });
+    setTimeout(() => {
+      this.updateBarState();
+    }, 0);
+  }
+
+  updateStateFromAddKegForm(keg) {
+    let kegListToBeUpdated = this.state.masterKegList.slice();
+    kegListToBeUpdated.push(keg);
+    this.setState({
+      masterKegList: kegListToBeUpdated,
       addingNewKeg: false
     });
     setTimeout(() => {
       this.props.recordNewPurchase(keg.cost);
+      this.updateBarState();
+      console.log("hi");
     }, 0);
   }
 
+  //   handleAddingNewKegToList(keg) {
+  //     let kegList = this.state.masterKegList.slice();
+  //     kegList.push(keg);
+
+  //     this.setState({
+  //       masterKegList: kegList,
+  //       addingNewKeg: false
+  //     });
+  //     setTimeout(() => {
+  //       this.props.recordNewPurchase(keg.cost);
+  //     }, 0);
+  //   }
+
   getKegIndex(keg, arr) {
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].id == keg.props.id) {
+      if (arr[i].id == keg.id) {
         return i;
       }
     }
-  }
-
-  handleDeletingKegFromList(keg) {
-    console.log(keg);
-    let kegList = this.state.masterKegList.slice();
-
-    let kegIndex = this.getKegIndex(keg, kegList);
-    kegList.splice(kegIndex, 1);
-
-    this.setState({
-      masterKegList: kegList,
-      showingDeleteMenu: false
-    });
   }
 
   showDeleteMenu() {
@@ -72,12 +100,13 @@ class KegControl extends Component {
     if (!this.state.addingNewKeg && !this.state.showingDeleteMenu) {
       return (
         <div>
-          <p>Keg Control Works</p>
-          <button onClick={() => this.addNewKeg()}>Add new Keg</button>
+          <button className="button" onClick={() => this.addNewKeg()}>
+            Add new Keg
+          </button>
           <div>
             <KegList
+              updateKegControlState={this.updateKegControlStateFromKeg}
               onClickDeleteMenu={this.showDeleteMenu}
-              onClickDelete={this.handleDeletingKegFromList}
               recordSale={this.props.recordSale}
               onAddingNewKeg={this.handleAddingNewKegToList}
               kegList={this.state.masterKegList}
@@ -88,12 +117,15 @@ class KegControl extends Component {
     } else if (this.state.showingDeleteMenu) {
       return (
         <DeleteMenu
+          updateKegControlState={this.updateKegControlStateFromDeleteMenu}
           onClickDelete={this.handleDeletingKegFromList}
           kegList={this.state.masterKegList}
         />
       );
     } else {
-      return <AddKegForm onClickingAddNewKeg={this.handleAddingNewKegToList} />;
+      return (
+        <AddKegForm onClickingAddNewKeg={this.updateStateFromAddKegForm} />
+      );
     }
   }
 }

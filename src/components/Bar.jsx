@@ -8,18 +8,43 @@ import { Switch, Route } from "react-router-dom";
 class Bar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      financials: {
-        income: 0,
-        expenditures: 0,
-        profit: 0,
-        cashOnHand: 200
-      },
-      showing: null
-    };
+    this.state = this.props.status;
+    // this.state = {
+    //   financials: {
+    //     income: 0,
+    //     expenditures: 0,
+    //     profit: 0,
+    //     cashOnHand: 200
+    //   },
+    //   showing: null
+    // };
     this.recordSale = this.recordSale.bind(this);
     this.navFromBarNav = this.navFromBarNav.bind(this);
     this.recordNewPurchase = this.recordNewPurchase.bind(this);
+    this.updateBarStateFromKegControl = this.updateBarStateFromKegControl.bind(
+      this
+    );
+    this.updateBarStateFromFinancials = this.updateBarStateFromFinancials.bind(
+      this
+    );
+  }
+
+  updateAppState() {
+    return this.props.updateState({ Bar: this.state });
+  }
+
+  updateBarStateFromKegControl(stateObject) {
+    this.setState({ KegControl: stateObject }); //.then(this.updateAppState());
+    setTimeout(() => {
+      this.updateAppState();
+    }, 0);
+  }
+
+  updateBarStateFromFinancials(stateObject) {
+    this.setState({ financials: stateObject });
+    setTimeout(() => {
+      this.updateAppState();
+    }, 0);
   }
 
   showFinancials() {
@@ -41,11 +66,11 @@ class Bar extends Component {
   }
 
   recordNewPurchase(price) {
-    let money = parseFloat(price);
+    let expense = parseFloat(price);
     let newIncome = this.state.financials.income;
-    let newExpenditures = this.state.financials.expenditures + money;
-    let newProfit = this.state.financials.profit - money;
-    let newCashOnHand = this.state.financials.cashOnHand - money;
+    let newExpenditures = this.state.financials.expenditures + expense;
+    let newProfit = this.state.financials.profit - expense;
+    let newCashOnHand = this.state.financials.cashOnHand - expense;
 
     this.setState({
       financials: {
@@ -55,14 +80,19 @@ class Bar extends Component {
         cashOnHand: parseFloat(newCashOnHand.toFixed(2))
       }
     });
+
+    setTimeout(() => {
+      this.updateBarStateFromFinancials();
+    }, 0);
   }
 
   recordSale(price) {
-    let money = parseFloat(price);
-    let newIncome = this.state.financials.income + money;
+    let income = parseFloat(price);
+    let newIncome = this.state.financials.income + income;
     let newExpenditures = this.state.financials.expenditures;
-    let newProfit = this.state.financials.profit + money;
-    let newCashOnHand = this.state.financials.cashOnHand + money;
+    let newProfit = this.state.financials.profit + income;
+    let newCashOnHand = this.state.financials.cashOnHand + income;
+
     this.setState({
       financials: {
         income: parseFloat(newIncome.toFixed(2)),
@@ -72,6 +102,7 @@ class Bar extends Component {
       }
     });
   }
+
   render() {
     var visibleContent;
     if (this.state.showing == "kegs") {
@@ -79,6 +110,8 @@ class Bar extends Component {
         <div>
           <BarNav onSelect={this.navFromBarNav} />
           <KegControl
+            updateState={this.updateBarStateFromKegControl}
+            status={this.state.KegControl}
             recordNewPurchase={this.recordNewPurchase}
             recordSale={this.recordSale}
           />
@@ -88,7 +121,10 @@ class Bar extends Component {
       visibleContent = (
         <div>
           <BarNav onSelect={this.navFromBarNav} />
-          <Financial financials={this.state.financials} />
+          <Financial
+            updateState={this.updateBarStateFromFinancials}
+            status={this.state.financials}
+          />
         </div>
       );
     }

@@ -1,14 +1,6 @@
 import React from "react";
 
 function DeleteKeg(props) {
-  function onClickDelete() {
-    let keg = {
-      props: {
-        id: props.id
-      }
-    };
-    props.onClickDelete(keg);
-  }
   return (
     <div className="frame">
       <style jsx>{`
@@ -50,7 +42,10 @@ function DeleteKeg(props) {
       </p>
       <p>Should have {props.beersLeft} beers left.</p>
 
-      <button className="delete" onClick={() => onClickDelete(this)}>
+      <button
+        className="delete"
+        onClick={() => props.updateKegControlState(this)}
+      >
         Delete this keg
       </button>
     </div>
