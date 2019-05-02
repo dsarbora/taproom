@@ -10,12 +10,7 @@ function DeleteMenu(props) {
           onClickDelete={props.onClickDelete}
           recordSale={props.recordSale}
           key={keg.id}
-          name={keg.name}
-          ABV={keg.ABV}
-          price={keg.price}
-          cost={keg.cost}
-          beersLeft={keg.beersLeft}
-          id={keg.id}
+          keg={keg}
         />
       ))}
     </div>

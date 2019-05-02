@@ -30,39 +30,54 @@ class Bar extends Component {
   }
 
   updateAppState() {
-    return this.props.updateState({ Bar: this.state });
+    setTimeout(() => {
+      return this.props.updateState({ Bar: this.state });
+    }, 0);
   }
 
   updateBarStateFromKegControl(stateObject) {
-    this.setState({ KegControl: stateObject }); //.then(this.updateAppState());
-    setTimeout(() => {
-      this.updateAppState();
-    }, 0);
+    this.setState({ KegControl: stateObject });
+
+    this.updateAppState();
   }
 
   updateBarStateFromFinancials(stateObject) {
     this.setState({ financials: stateObject });
-    setTimeout(() => {
-      this.updateAppState();
-    }, 0);
+
+    this.updateAppState();
   }
 
   showFinancials() {
     this.setState({
       showing: "financials"
     });
+
+    this.updateAppState();
   }
 
   showKegs() {
     this.setState({
-      showing: "kegs"
+      showing: "kegs",
+      addingNewKeg: false
     });
+
+    this.updateAppState();
   }
 
   navFromBarNav(input) {
     this.setState({
       showing: input
     });
+
+    this.updateAppState();
+  }
+
+  switchToBarHome() {
+    if (this.state.cameFromNavBar === true) {
+      this.setState({ showing: null });
+    }
+
+    this.updateAppState();
   }
 
   recordNewPurchase(price) {

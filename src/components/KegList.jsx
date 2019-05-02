@@ -3,10 +3,6 @@ import Keg from "./Keg";
 import PropTypes from "prop-types";
 
 function KegList(props) {
-  function onClickDeleteMenu() {
-    console.log(props.onClickDeleteMenu);
-    console.log("hi");
-  }
   return (
     <div>
       <style jsx>{`
@@ -15,10 +11,14 @@ function KegList(props) {
           flex-wrap: wrap;
         }
         .delete {
+          background-color: red;
+          margin-top: 5px;
         }
       `}</style>
-      <div className="delete">
-        <button onClick={() => props.onClickDeleteMenu()}>Delete A Keg</button>
+      <div>
+        <button className="delete" onClick={() => props.onClickDeleteMenu()}>
+          Delete A Keg
+        </button>
       </div>
       <div className="kegList">
         {props.kegList.map((keg, index) => (
@@ -27,11 +27,6 @@ function KegList(props) {
             onClickDelete={props.onClickDelete}
             recordSale={props.recordSale}
             key={keg.id}
-            // name={keg.name}
-            // ABV={keg.ABV}
-            // price={keg.price}
-            // cost={keg.cost}
-            // beersLeft={keg.beersLeft}
             id={keg.id}
             status={props.kegList[index]}
           />

@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Intro() {
+function Intro(props) {
   return (
     <div className="container">
       <style jsx>{`
         h1 {
           font-size: 45px;
-          color: #700;
+          color: forestgreen;
         }
 
         .header {
@@ -25,6 +25,13 @@ function Intro() {
         <Link to="/bar">
           <button>Enter</button>
         </Link>
+        <div>
+          {props.kegs.map(keg => (
+            <h3 className="beer">
+              {keg.name} {keg.price}
+            </h3>
+          ))}
+        </div>
       </div>
     </div>
   );

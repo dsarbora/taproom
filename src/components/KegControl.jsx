@@ -59,22 +59,9 @@ class KegControl extends Component {
     setTimeout(() => {
       this.props.recordNewPurchase(keg.cost);
       this.updateBarState();
-      console.log("hi");
     }, 0);
   }
 
-  //   handleAddingNewKegToList(keg) {
-  //     let kegList = this.state.masterKegList.slice();
-  //     kegList.push(keg);
-
-  //     this.setState({
-  //       masterKegList: kegList,
-  //       addingNewKeg: false
-  //     });
-  //     setTimeout(() => {
-  //       this.props.recordNewPurchase(keg.cost);
-  //     }, 0);
-  //   }
 
   getKegIndex(keg, arr) {
     for (let i = 0; i < arr.length; i++) {
@@ -100,7 +87,12 @@ class KegControl extends Component {
     if (!this.state.addingNewKeg && !this.state.showingDeleteMenu) {
       return (
         <div>
-          <button className="button" onClick={() => this.addNewKeg()}>
+          <style jsx>{`
+            .add {
+              background-color: green;
+            }
+          `}</style>
+          <button className="add" onClick={() => this.addNewKeg()}>
             Add new Keg
           </button>
           <div>

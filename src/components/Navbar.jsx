@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(props) {
   return (
     <div className="navBar">
       <style jsx>{`
@@ -19,7 +19,7 @@ function Navbar() {
         <button>Home</button>
       </Link>
       <Link to="/bar">
-        <button>Bar</button>
+        <button onClick={() => props.BarHome()}>Bar</button>
       </Link>
     </div>
   );

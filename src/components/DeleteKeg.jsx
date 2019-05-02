@@ -38,9 +38,9 @@ function DeleteKeg(props) {
         {/* <button className="delete" onClick={() => this.onClickDelete()}>
               Delete Keg
             </button> */}
-        <strong>{props.name}</strong>
+        <strong>{props.keg.name}</strong>
       </p>
-      <p>Should have {props.beersLeft} beers left.</p>
+      <p>Should have {props.keg.beersLeft} beers left.</p>
 
       <button
         className="delete"

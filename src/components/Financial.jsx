@@ -5,6 +5,7 @@ class Financials extends Component {
     super(props);
     this.state = this.props.status;
     console.log(this.state);
+    this.render = this.render.bind(this);
   }
   render() {
     return (
