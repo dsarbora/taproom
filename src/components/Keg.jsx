@@ -65,6 +65,7 @@ class Keg extends Component {
   }
   render() {
     let color;
+    let beersLeftMessage;
     let _name = null;
     let _ABV = null;
     let _price = null;
@@ -75,6 +76,13 @@ class Keg extends Component {
       color = "yellow";
     } else {
       color = "red";
+    }
+    if (this.state.beersLeft > 0) {
+      beersLeftMessage = `Should have ${this.state.beersLeft} beers left.`;
+    } else if (this.state.beersLeft > -10) {
+      beersLeftMessage = "This keg should be empty.";
+    } else {
+      beersLeftMessage = "Is it really not empty?";
     }
     if (!this.state.editFormShowing) {
       return (
@@ -136,7 +144,7 @@ class Keg extends Component {
           </p>
           <p>{this.state.ABV}% ABV</p>
           <p>${this.state.price}</p>
-          <p>Should have {this.state.beersLeft} beers left.</p>
+          <p>{beersLeftMessage}</p>
 
           <button
             className="sellGrowler"

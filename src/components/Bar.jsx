@@ -31,7 +31,10 @@ class Bar extends Component {
 
   updateAppState() {
     setTimeout(() => {
-      return this.props.updateState({ Bar: this.state });
+      return this.props.updateState({
+        cameFromNavBar: false,
+        Bar: this.state
+      });
     }, 0);
   }
 
@@ -73,11 +76,15 @@ class Bar extends Component {
   }
 
   switchToBarHome() {
-    if (this.state.cameFromNavBar === true) {
-      this.setState({ showing: null });
+    if (this.props.cameFromNavBar === true) {
+      this.setState({
+        showing: null
+      });
     }
 
     this.updateAppState();
+    console.log("hi");
+    console.log(this.state);
   }
 
   recordNewPurchase(price) {
@@ -119,6 +126,11 @@ class Bar extends Component {
   }
 
   render() {
+    // console.log(this.state);
+    // if (this.props.cameFromNavBar) {
+    //   this.switchToBarHome();
+    // }
+
     var visibleContent;
     if (this.state.showing == "kegs") {
       visibleContent = (

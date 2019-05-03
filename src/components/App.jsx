@@ -60,12 +60,16 @@ class App extends Component {
 
   updateState(newStateObject) {
     this.setState(newStateObject);
+    setTimeout(() => {
+      this.setState({ cameFromNavBar: false });
+    }, 0);
   }
 
   routedToBarFromNavBar() {
     this.setState({
       cameFromNavBar: true
     });
+    console.log("hi");
   }
 
   render() {
@@ -84,7 +88,11 @@ class App extends Component {
             exact
             path="/bar"
             component={() => (
-              <Bar updateState={this.updateState} status={this.state.Bar} />
+              <Bar
+                updateState={this.updateState}
+                cameFromNavBar={this.state.cameFromNavBar}
+                status={this.state.Bar}
+              />
             )}
           />
         </Switch>
