@@ -38,6 +38,16 @@ module.exports = {
           presets: [["es2015", { modules: false }], "react"],
           plugins: ["react-hot-loader/babel", "styled-jsx/babel"]
         }
+      },
+      {
+        test: /\.(png|gif|jp(e*)g|svg)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 8000,
+            name: "images/[hash]-[name].[ext]"
+          }
+        }
       }
     ]
   },

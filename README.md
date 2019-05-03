@@ -4,6 +4,8 @@
 
 ## Setup
 
+<ol>
+  <li>
 
 ## Specifications
 
@@ -13,16 +15,16 @@
 
 ## Known Bugs
 
-- After a Keg is added, the global financial state of the bar becomes undefined
-- Navigating to the Bar from the top Navbar will not automatically show the Bar's homepage, but will simply navigate to the last page within the Bar component that the user has visited. So if a user is viewing financial information for the bar, and tries to navigate to the "Bar" from the top menu, nothing will change. This is because which page is showing in the bar is dependent on the state, which is not changed from the Navbar.
+- Bar component maintains its present `showing` state value when revisited from the Navbar.
 
 ## Technologies Used
 
-* Node.js
-- React
-- JavaScript
-- HTML
-- CSS
+- Node.js
+
+* React
+* JavaScript
+* HTML
+* CSS
 
 ```javascript
                      Class App
@@ -35,3 +37,7 @@ AddKegForm  KegList   DeleteKeg
               /
          Class Keg
 ```
+
+#### Photo Credit
+
+Daniel Vogel on Unsplash

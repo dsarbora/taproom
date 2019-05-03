@@ -73,7 +73,13 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <style jsx>{`
+          .container {
+            background-image: url("http://tiny.cc/31v55y");
+            height: 600px;
+          }
+        `}</style>
         <Navbar BarHome={this.routedToBarFromNavBar} />
         <Switch>
           <Route

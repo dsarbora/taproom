@@ -12,7 +12,7 @@ function Navbar(props) {
           margin: 10px;
         }
         .navBar {
-          border-bottom: 1px solid darkgreen;
+          border-bottom: 1px solid white;
         }
       `}</style>
       <Link to="/">

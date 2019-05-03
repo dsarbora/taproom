@@ -72,7 +72,7 @@ class Keg extends Component {
       green = Math.max(0, green - (green - 255) * (green - 255));
     }
     let blue = 0;
-    let color = `rgb(${red}, ${green}, ${blue})`;
+    let color = `rgba(${red}, ${green}, ${blue}, .85)`;
     return color;
     // if (this.state.beersLeft > 30) {
     //   color = "green";
@@ -101,9 +101,10 @@ class Keg extends Component {
         <div className="frame">
           <style jsx>{`
             .frame {
-              width: 200px;
+              color: #eee;
+              width: 400px;
               height: 200px;
-              border: 1px solid black;
+              border: 1px solid white;
               padding-top: 10px;
               text-align: center;
               margin-top: 10px;
