@@ -21,7 +21,9 @@ class KegControl extends Component {
   }
 
   updateBarState() {
-    this.props.updateState(this.state);
+    setTimeout(() => {
+      this.props.updateState(this.state);
+    });
   }
 
   updateKegControlStateFromKeg(newStateObject) {
@@ -61,7 +63,6 @@ class KegControl extends Component {
       this.updateBarState();
     }, 0);
   }
-
 
   getKegIndex(keg, arr) {
     for (let i = 0; i < arr.length; i++) {

@@ -63,20 +63,32 @@ class Keg extends Component {
 
     this.updateBarComponent(this.state);
   }
+
+  determineColor() {
+    let beersMissing = 125 - this.state.beersLeft;
+    let red = Math.min(255, 510 - this.state.beersLeft * 4);
+    let green = this.state.beersLeft + (135 - this.state.beersLeft) * 2;
+    if (green > 255) {
+      green = Math.max(0, green - (green - 255) * (green - 255));
+    }
+    let blue = 0;
+    let color = `rgb(${red}, ${green}, ${blue})`;
+    return color;
+    // if (this.state.beersLeft > 30) {
+    //   color = "green";
+    // } else if (this.state.beersLeft > 10) {
+    //   color = "yellow";
+    // } else {
+    //   color = "red";
+    // }
+  }
   render() {
-    let color;
     let beersLeftMessage;
     let _name = null;
     let _ABV = null;
     let _price = null;
     let _cost = null;
-    if (this.state.beersLeft > 30) {
-      color = "green";
-    } else if (this.state.beersLeft > 10) {
-      color = "yellow";
-    } else {
-      color = "red";
-    }
+    let color = this.determineColor();
     if (this.state.beersLeft > 0) {
       beersLeftMessage = `Should have ${this.state.beersLeft} beers left.`;
     } else if (this.state.beersLeft > -10) {

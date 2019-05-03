@@ -4,7 +4,7 @@ class Financials extends Component {
   constructor(props) {
     super(props);
     this.state = this.props.status;
-    console.log(this.state);
+
     this.render = this.render.bind(this);
   }
   render() {

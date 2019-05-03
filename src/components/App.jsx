@@ -69,7 +69,6 @@ class App extends Component {
     this.setState({
       cameFromNavBar: true
     });
-    console.log("hi");
   }
 
   render() {

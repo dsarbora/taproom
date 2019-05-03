@@ -27,11 +27,13 @@ class Bar extends Component {
     this.updateBarStateFromFinancials = this.updateBarStateFromFinancials.bind(
       this
     );
+    this.showFinancials = this.showFinancials.bind(this);
+    this.navFromBarNav = this.navFromBarNav.bind(this);
   }
 
   updateAppState() {
     setTimeout(() => {
-      return this.props.updateState({
+      this.props.updateState({
         cameFromNavBar: false,
         Bar: this.state
       });
@@ -40,7 +42,6 @@ class Bar extends Component {
 
   updateBarStateFromKegControl(stateObject) {
     this.setState({ KegControl: stateObject });
-
     this.updateAppState();
   }
 
@@ -83,8 +84,6 @@ class Bar extends Component {
     }
 
     this.updateAppState();
-    console.log("hi");
-    console.log(this.state);
   }
 
   recordNewPurchase(price) {
