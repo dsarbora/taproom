@@ -45,8 +45,8 @@ class Bar extends Component {
     this.updateAppState();
   }
 
-  updateBarStateFromFinancials(stateObject) {
-    this.setState({ financials: stateObject });
+  updateBarStateFromFinancials() {
+    this.setState({ financials: this.state.financials });
 
     this.updateAppState();
   }

@@ -23,7 +23,7 @@ class KegControl extends Component {
   updateBarState() {
     setTimeout(() => {
       this.props.updateState(this.state);
-    });
+    }, 0);
   }
 
   updateKegControlStateFromKeg(newStateObject) {
@@ -60,6 +60,8 @@ class KegControl extends Component {
     });
     setTimeout(() => {
       this.props.recordNewPurchase(keg.cost);
+    }, 0);
+    setTimeout(() => {
       this.updateBarState();
     }, 0);
   }
