@@ -24,28 +24,28 @@ class App extends Component {
           masterKegList: [
             {
               name: "Bud Light",
-              ABV: "3%",
-              price: "3.0",
+              ABV: "3",
+              price: "2.99",
               id: 1,
               beersLeft: 125
             },
             {
               name: "Manny's Pale Ale",
-              ABV: "5.6%",
+              ABV: "5.6",
               price: "4.50",
               id: 2,
               beersLeft: 125
             },
             {
               name: "Diamond Knot IPA",
-              ABV: "6.2%",
-              price: "6",
+              ABV: "6.2",
+              price: "5.99",
               id: 3,
               beersLeft: 125
             },
             {
               name: "German Double Stout",
-              ABV: "5.8%",
+              ABV: "5.8",
               price: "6.50",
               id: 4,
               beersLeft: 125
@@ -77,7 +77,9 @@ class App extends Component {
         <style jsx>{`
           .container {
             background-image: url("http://tiny.cc/31v55y");
-            height: 600px;
+            margin: -10px -10px -10px -10px;
+            min-height: 600px;
+            padding-bottom: 20px;
           }
         `}</style>
         <Navbar BarHome={this.routedToBarFromNavBar} />

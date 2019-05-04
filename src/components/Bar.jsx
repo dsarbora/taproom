@@ -29,6 +29,8 @@ class Bar extends Component {
     );
     this.showFinancials = this.showFinancials.bind(this);
     this.navFromBarNav = this.navFromBarNav.bind(this);
+    this.beginAddingKeg = this.beginAddingKeg.bind(this);
+    this.beginDeletingKeg = this.beginDeletingKeg.bind(this);
   }
 
   updateAppState() {
@@ -38,6 +40,21 @@ class Bar extends Component {
         Bar: this.state
       });
     }, 0);
+  }
+
+  beginAddingKeg() {
+    this.setState({
+      addingNewKeg: true
+    });
+    this.updateAppState();
+  }
+
+  beginDeletingKeg() {
+    console.log(this.state);
+    this.setState({
+      showingDeleteMenu: true
+    });
+    this.updateAppState();
   }
 
   updateBarStateFromKegControl(stateObject) {
@@ -134,7 +151,11 @@ class Bar extends Component {
     if (this.state.showing == "kegs") {
       visibleContent = (
         <div>
-          <BarNav onSelect={this.navFromBarNav} />
+          <BarNav
+            addKeg={this.beginAddingKeg}
+            deleteKeg={this.beginDeletingKeg}
+            onSelect={this.navFromBarNav}
+          />
           <KegControl
             updateState={this.updateBarStateFromKegControl}
             status={this.state.KegControl}
@@ -146,7 +167,11 @@ class Bar extends Component {
     } else if (this.state.showing == "financials") {
       visibleContent = (
         <div>
-          <BarNav onSelect={this.navFromBarNav} />
+          <BarNav
+            addKeg={this.beginAddingKeg}
+            deleteKeg={this.beginDeletingKeg}
+            onSelect={this.navFromBarNav}
+          />
           <Financial
             updateState={this.updateBarStateFromFinancials}
             status={this.state.financials}

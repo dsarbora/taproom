@@ -15,6 +15,8 @@ function BarNav(props) {
         }
         .right {
           background-color: lightgreen;
+          position: relative;
+          left: 200px;
         }
         .nav {
           text-align: center;

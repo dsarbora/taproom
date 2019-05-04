@@ -92,7 +92,14 @@ class KegControl extends Component {
         <div>
           <style jsx>{`
             .add {
-              background-color: green;
+              background-color: lightgreen;
+              border-radius: 5px;
+              position: relative;
+              bottom: 58px;
+              left: 140px;
+              padding-top: 15px;
+              padding-bottom: 15px;
+              margin-bottom: -100px;
             }
           `}</style>
           <button className="add" onClick={() => this.addNewKeg()}>

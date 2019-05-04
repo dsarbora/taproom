@@ -118,7 +118,8 @@ class Keg extends Component {
               padding: 10px 15px 10px 15px;
               border-radius: 5px;
               text-align: center;
-              margin-right: 10px;
+              margin-right: 25px;
+              margin-left: 25px;
               box-shadow: 1px -1px 1px rgba(0, 0, 0, 1);
             }
 

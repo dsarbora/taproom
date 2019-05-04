@@ -12,7 +12,14 @@ function KegList(props) {
         }
         .delete {
           background-color: red;
+          border-radius: 5px;
           margin-top: 5px;
+          position: relative;
+          bottom: 98px;
+          left: 250px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          margin-bottom: -50px;
         }
       `}</style>
       <div>
