@@ -65,6 +65,10 @@ class Keg extends Component {
   }
 
   determineColor() {
+    let textColor = "white";
+    if (this.state.beersLeft < 60 && this.state.beersLeft > 5) {
+      textColor = "black";
+    }
     let beersMissing = 125 - this.state.beersLeft;
     let red = Math.min(255, 510 - this.state.beersLeft * 4);
     let green = this.state.beersLeft + (135 - this.state.beersLeft) * 2;
@@ -73,7 +77,7 @@ class Keg extends Component {
     }
     let blue = 0;
     let color = `rgba(${red}, ${green}, ${blue}, .85)`;
-    return color;
+    return [textColor, color];
     // if (this.state.beersLeft > 30) {
     //   color = "green";
     // } else if (this.state.beersLeft > 10) {
@@ -101,7 +105,7 @@ class Keg extends Component {
         <div className="frame">
           <style jsx>{`
             .frame {
-              color: #eee;
+              color: ${color[0]};
               width: 400px;
               height: 200px;
               border: 1px solid white;
@@ -109,7 +113,7 @@ class Keg extends Component {
               text-align: center;
               margin-top: 10px;
               margin-right: 10px;
-              background-color: ${color};
+              background-color: ${color[1]};
             }
             .frame:hover {
               box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);

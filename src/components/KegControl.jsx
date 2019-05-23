@@ -41,6 +41,7 @@ class KegControl extends Component {
   updateKegControlStateFromDeleteMenu(objectToBeDeleted) {
     let kegListToBeUpdated = this.state.masterKegList.slice();
     let kegIndex = this.getKegIndex(objectToBeDeleted, kegListToBeUpdated);
+    console.log(objectToBeDeleted);
     kegListToBeUpdated.splice(kegIndex, 1);
     this.setState({
       masterKegList: kegListToBeUpdated,

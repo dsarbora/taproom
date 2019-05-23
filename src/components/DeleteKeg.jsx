@@ -44,7 +44,7 @@ function DeleteKeg(props) {
 
       <button
         className="delete"
-        onClick={() => props.updateKegControlState(this)}
+        onClick={() => props.updateKegControlState(props.keg)}
       >
         Delete this keg
       </button>
